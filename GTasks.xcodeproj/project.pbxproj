@@ -1,0 +1,663 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		16F1B84BC9804A3591FEFB16 /* libPods-GTasks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF1642056734EA0B2B51D75 /* libPods-GTasks.a */; };
+		2965696119E141E30022916E /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 2965696019E141E30022916E /* task.png */; };
+		2965696B19E2ADE40022916E /* TheToolBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2965696A19E2ADE40022916E /* TheToolBarControllerViewController.swift */; };
+		2970FFB419CC603E003AFDC7 /* EditTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970FFB319CC603E003AFDC7 /* EditTaskListViewController.swift */; };
+		2970FFBB19CCC379003AFDC7 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970FFBA19CCC379003AFDC7 /* EditTaskViewController.swift */; };
+		2970FFBD19CCCC88003AFDC7 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970FFBC19CCCC88003AFDC7 /* AddTaskViewController.swift */; };
+		2993FACF19CCE1CB002A6CFD /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993FACE19CCE1CB002A6CFD /* TasksTableViewCell.swift */; };
+		29AD8E9619ED6C100067D098 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD8E9519ED6C100067D098 /* StatusTableViewCell.swift */; };
+		29C11B5F19CAD10E00300971 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B5E19CAD10E00300971 /* AppDelegate.swift */; };
+		29C11B6619CAD10E00300971 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B6519CAD10E00300971 /* Images.xcassets */; };
+		29C11B7519CAD10E00300971 /* GTasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B7419CAD10E00300971 /* GTasksTests.swift */; };
+		29C11B8219CAF01E00300971 /* TaskListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B8119CAF01E00300971 /* TaskListsTableViewController.swift */; };
+		29C11B8419CB018C00300971 /* TaskListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B8319CB018C00300971 /* TaskListsTableViewCell.swift */; };
+		29C11B8B19CB2BBA00300971 /* icon-delete-darkgray-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8619CB2BB900300971 /* icon-delete-darkgray-50.png */; };
+		29C11B8C19CB2BBA00300971 /* icon-delete-gray-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8719CB2BB900300971 /* icon-delete-gray-50.png */; };
+		29C11B8D19CB2BBA00300971 /* icon-delete-red-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8819CB2BB900300971 /* icon-delete-red-50.png */; };
+		29C11B8E19CB2BBA00300971 /* icon-edit-green-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8919CB2BB900300971 /* icon-edit-green-50.png */; };
+		29C11B8F19CB2BBA00300971 /* icon-edit-grey-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8A19CB2BB900300971 /* icon-edit-grey-50.png */; };
+		29C11B9119CB86AE00300971 /* TasksNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9019CB86AE00300971 /* TasksNavigationController.swift */; };
+		29C11B9319CB8F3A00300971 /* AddTasklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */; };
+		29C11B9519CB9B6600300971 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B9419CB9B6500300971 /* Default-568h@2x.png */; };
+		29C11B9719CBA02600300971 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9619CBA02500300971 /* TasksTableViewController.swift */; };
+		29C11B9919CBABB200300971 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C11B9819CBABB200300971 /* Security.framework */; };
+		29C11B9B19CBABC100300971 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C11B9A19CBABC100300971 /* SystemConfiguration.framework */; };
+		29C11B9D19CBACC400300971 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B9C19CBACC400300971 /* GTMOAuth2ViewTouch.xib */; };
+		29C11B9F19CBAD0C00300971 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9E19CBAD0C00300971 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		29C11BA119CBAD1A00300971 /* GTLNetworking_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11BA019CBAD1A00300971 /* GTLNetworking_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		29C11BA419CBAD6B00300971 /* GTLTasks_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11BA319CBAD6B00300971 /* GTLTasks_Sources.m */; };
+		29C5C49D19EA825300955857 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C5C49C19EA825200955857 /* DueDateTableViewCell.swift */; };
+		29C874BD19EC477D0018700F /* TaskListPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C874BC19EC477D0018700F /* TaskListPickerTableViewCell.swift */; };
+		29C874BF19ECF5CE0018700F /* NotesTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C874BE19ECF5CE0018700F /* NotesTextView.swift */; };
+		29CEED8319DEEBC400D54E62 /* ThePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CEED8219DEEBC400D54E62 /* ThePresentationController.swift */; };
+		29CEED8519DF3F3900D54E62 /* TheTransitionControllerObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CEED8419DF3F3900D54E62 /* TheTransitionControllerObjects.swift */; };
+		29D9EABA19EE769000B4C348 /* 1-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EAB919EE769000B4C348 /* 1-grey.png */; };
+		29D9EABC19EE769700B4C348 /* 1-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EABB19EE769700B4C348 /* 1-red.png */; };
+		29D9EABE19EE76C700B4C348 /* 4-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EABD19EE76C700B4C348 /* 4-grey.png */; };
+		29D9EAC019EE76E300B4C348 /* 4-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EABF19EE76E300B4C348 /* 4-green.png */; };
+		29D9EAC219EE76F800B4C348 /* calendar-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EAC119EE76F800B4C348 /* calendar-red.png */; };
+		29D9EAC419EE770100B4C348 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EAC319EE770100B4C348 /* calendar.png */; };
+		29E3737D19DB279D00AAB400 /* LogErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */; };
+		29ED120919EFD6C400B9CBA5 /* TaskAndTasklistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED120819EFD6C400B9CBA5 /* TaskAndTasklistStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29C11B6F19CAD10E00300971 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29C11B5119CAD10E00300971 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C11B5819CAD10E00300971;
+			remoteInfo = GTasks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2965696019E141E30022916E /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = task.png; path = ../../../apppictures/gtask/task.png; sourceTree = "<group>"; };
+		2965696A19E2ADE40022916E /* TheToolBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheToolBarControllerViewController.swift; sourceTree = "<group>"; };
+		2970FFB319CC603E003AFDC7 /* EditTaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskListViewController.swift; sourceTree = "<group>"; };
+		2970FFBA19CCC379003AFDC7 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		2970FFBC19CCCC88003AFDC7 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		2993FACE19CCE1CB002A6CFD /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		29AD8E9519ED6C100067D098 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		29C11B5919CAD10E00300971 /* GTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C11B5D19CAD10E00300971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29C11B5E19CAD10E00300971 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		29C11B6519CAD10E00300971 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		29C11B6E19CAD10E00300971 /* GTasksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTasksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C11B7319CAD10E00300971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29C11B7419CAD10E00300971 /* GTasksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTasksTests.swift; sourceTree = "<group>"; };
+		29C11B7E19CAEEFA00300971 /* GTasks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GTasks-Bridging-Header.h"; sourceTree = "<group>"; };
+		29C11B8119CAF01E00300971 /* TaskListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListsTableViewController.swift; sourceTree = "<group>"; };
+		29C11B8319CB018C00300971 /* TaskListsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListsTableViewCell.swift; sourceTree = "<group>"; };
+		29C11B8619CB2BB900300971 /* icon-delete-darkgray-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-delete-darkgray-50.png"; path = "Images.xcassets/icon-delete-darkgray-50.png"; sourceTree = "<group>"; };
+		29C11B8719CB2BB900300971 /* icon-delete-gray-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-delete-gray-50.png"; path = "Images.xcassets/icon-delete-gray-50.png"; sourceTree = "<group>"; };
+		29C11B8819CB2BB900300971 /* icon-delete-red-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-delete-red-50.png"; path = "Images.xcassets/icon-delete-red-50.png"; sourceTree = "<group>"; };
+		29C11B8919CB2BB900300971 /* icon-edit-green-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-edit-green-50.png"; path = "Images.xcassets/icon-edit-green-50.png"; sourceTree = "<group>"; };
+		29C11B8A19CB2BB900300971 /* icon-edit-grey-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-edit-grey-50.png"; path = "Images.xcassets/icon-edit-grey-50.png"; sourceTree = "<group>"; };
+		29C11B9019CB86AE00300971 /* TasksNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksNavigationController.swift; sourceTree = "<group>"; };
+		29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTasklistViewController.swift; sourceTree = "<group>"; };
+		29C11B9419CB9B6500300971 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		29C11B9619CBA02500300971 /* TasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		29C11B9819CBABB200300971 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		29C11B9A19CBABC100300971 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		29C11B9C19CBACC400300971 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = ../../googleApi/trunk/Source/OAuth2/Touch/GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
+		29C11B9E19CBAD0C00300971 /* GTLCommon_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLCommon_Sources.m; path = ../../googleApi/trunk/Source/GTLCommon_Sources.m; sourceTree = "<group>"; };
+		29C11BA019CBAD1A00300971 /* GTLNetworking_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLNetworking_Sources.m; path = ../../googleApi/trunk/Source/GTLNetworking_Sources.m; sourceTree = "<group>"; };
+		29C11BA219CBAD5D00300971 /* GTLTasks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GTLTasks.h; path = ../../googleApi/trunk/Source/Services/Tasks/Generated/GTLTasks.h; sourceTree = "<group>"; };
+		29C11BA319CBAD6B00300971 /* GTLTasks_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLTasks_Sources.m; path = ../../googleApi/trunk/Source/Services/Tasks/Generated/GTLTasks_Sources.m; sourceTree = "<group>"; };
+		29C5C49C19EA825200955857 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
+		29C874BC19EC477D0018700F /* TaskListPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListPickerTableViewCell.swift; sourceTree = "<group>"; };
+		29C874BE19ECF5CE0018700F /* NotesTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTextView.swift; sourceTree = "<group>"; };
+		29CEED8219DEEBC400D54E62 /* ThePresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThePresentationController.swift; sourceTree = "<group>"; };
+		29CEED8419DF3F3900D54E62 /* TheTransitionControllerObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheTransitionControllerObjects.swift; sourceTree = "<group>"; };
+		29D9EAB919EE769000B4C348 /* 1-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-grey.png"; path = "../../../apppictures/gtask/1-grey.png"; sourceTree = "<group>"; };
+		29D9EABB19EE769700B4C348 /* 1-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-red.png"; path = "../../../apppictures/gtask/1-red.png"; sourceTree = "<group>"; };
+		29D9EABD19EE76C700B4C348 /* 4-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-grey.png"; path = "../../../apppictures/gtask/4-grey.png"; sourceTree = "<group>"; };
+		29D9EABF19EE76E300B4C348 /* 4-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-green.png"; path = "../../../apppictures/gtask/4-green.png"; sourceTree = "<group>"; };
+		29D9EAC119EE76F800B4C348 /* calendar-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-red.png"; path = "../../../apppictures/gtask/calendar-red.png"; sourceTree = "<group>"; };
+		29D9EAC319EE770100B4C348 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = ../../../apppictures/gtask/calendar.png; sourceTree = "<group>"; };
+		29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogErrorUtil.swift; sourceTree = "<group>"; };
+		29ED120819EFD6C400B9CBA5 /* TaskAndTasklistStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAndTasklistStore.swift; sourceTree = "<group>"; };
+		3AF1642056734EA0B2B51D75 /* libPods-GTasks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTasks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B7CD6CE33E24F86ACFD39A1 /* Pods-GTasks.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTasks.xcconfig"; path = "Pods/Pods-GTasks.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29C11B5619CAD10E00300971 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29C11B9B19CBABC100300971 /* SystemConfiguration.framework in Frameworks */,
+				29C11B9919CBABB200300971 /* Security.framework in Frameworks */,
+				16F1B84BC9804A3591FEFB16 /* libPods-GTasks.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29C11B6B19CAD10E00300971 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2970FFB519CC76F4003AFDC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B8319CB018C00300971 /* TaskListsTableViewCell.swift */,
+				2993FACE19CCE1CB002A6CFD /* TasksTableViewCell.swift */,
+				29C5C49C19EA825200955857 /* DueDateTableViewCell.swift */,
+				29C874BC19EC477D0018700F /* TaskListPickerTableViewCell.swift */,
+				29C874BE19ECF5CE0018700F /* NotesTextView.swift */,
+				29AD8E9519ED6C100067D098 /* StatusTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2970FFB619CC772A003AFDC7 /* GTL Sources */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B9E19CBAD0C00300971 /* GTLCommon_Sources.m */,
+				29C11BA019CBAD1A00300971 /* GTLNetworking_Sources.m */,
+				29C11BA219CBAD5D00300971 /* GTLTasks.h */,
+				29C11BA319CBAD6B00300971 /* GTLTasks_Sources.m */,
+			);
+			name = "GTL Sources";
+			sourceTree = "<group>";
+		};
+		2970FFB719CC77D1003AFDC7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B9019CB86AE00300971 /* TasksNavigationController.swift */,
+				29C11B8119CAF01E00300971 /* TaskListsTableViewController.swift */,
+				29CEED8219DEEBC400D54E62 /* ThePresentationController.swift */,
+				29C11B9619CBA02500300971 /* TasksTableViewController.swift */,
+				29CEED8419DF3F3900D54E62 /* TheTransitionControllerObjects.swift */,
+				29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */,
+				2970FFB319CC603E003AFDC7 /* EditTaskListViewController.swift */,
+				2970FFBA19CCC379003AFDC7 /* EditTaskViewController.swift */,
+				2970FFBC19CCCC88003AFDC7 /* AddTaskViewController.swift */,
+				2965696A19E2ADE40022916E /* TheToolBarControllerViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		29C11B5019CAD10E00300971 = {
+			isa = PBXGroup;
+			children = (
+				29C11B9419CB9B6500300971 /* Default-568h@2x.png */,
+				29C11B5B19CAD10E00300971 /* GTasks */,
+				29C11B7119CAD10E00300971 /* GTasksTests */,
+				29C11B5A19CAD10E00300971 /* Products */,
+				3B7CD6CE33E24F86ACFD39A1 /* Pods-GTasks.xcconfig */,
+				881979EC5B044FA7AF865E77 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		29C11B5A19CAD10E00300971 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B5919CAD10E00300971 /* GTasks.app */,
+				29C11B6E19CAD10E00300971 /* GTasksTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29C11B5B19CAD10E00300971 /* GTasks */ = {
+			isa = PBXGroup;
+			children = (
+				29ED120A19EFD79F00B9CBA5 /* Model */,
+				29E3737B19DB277600AAB400 /* Logging */,
+				2970FFB719CC77D1003AFDC7 /* Controllers */,
+				2970FFB619CC772A003AFDC7 /* GTL Sources */,
+				29C11B8519CB2B9900300971 /* Images */,
+				2970FFB519CC76F4003AFDC7 /* Views */,
+				29C11B5E19CAD10E00300971 /* AppDelegate.swift */,
+				29C11B6519CAD10E00300971 /* Images.xcassets */,
+				29C11B5C19CAD10E00300971 /* Supporting Files */,
+				29C11B7E19CAEEFA00300971 /* GTasks-Bridging-Header.h */,
+			);
+			path = GTasks;
+			sourceTree = "<group>";
+		};
+		29C11B5C19CAD10E00300971 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B9C19CBACC400300971 /* GTMOAuth2ViewTouch.xib */,
+				29C11B5D19CAD10E00300971 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		29C11B7119CAD10E00300971 /* GTasksTests */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B7419CAD10E00300971 /* GTasksTests.swift */,
+				29C11B7219CAD10E00300971 /* Supporting Files */,
+			);
+			path = GTasksTests;
+			sourceTree = "<group>";
+		};
+		29C11B7219CAD10E00300971 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B7319CAD10E00300971 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		29C11B8519CB2B9900300971 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				29D9EAB919EE769000B4C348 /* 1-grey.png */,
+				29D9EABB19EE769700B4C348 /* 1-red.png */,
+				29D9EABF19EE76E300B4C348 /* 4-green.png */,
+				29D9EABD19EE76C700B4C348 /* 4-grey.png */,
+				29D9EAC119EE76F800B4C348 /* calendar-red.png */,
+				29D9EAC319EE770100B4C348 /* calendar.png */,
+				2965696019E141E30022916E /* task.png */,
+				29C11B8619CB2BB900300971 /* icon-delete-darkgray-50.png */,
+				29C11B8719CB2BB900300971 /* icon-delete-gray-50.png */,
+				29C11B8819CB2BB900300971 /* icon-delete-red-50.png */,
+				29C11B8919CB2BB900300971 /* icon-edit-green-50.png */,
+				29C11B8A19CB2BB900300971 /* icon-edit-grey-50.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		29E3737B19DB277600AAB400 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */,
+			);
+			name = Logging;
+			sourceTree = "<group>";
+		};
+		29ED120A19EFD79F00B9CBA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29ED120819EFD6C400B9CBA5 /* TaskAndTasklistStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		881979EC5B044FA7AF865E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29C11B9A19CBABC100300971 /* SystemConfiguration.framework */,
+				29C11B9819CBABB200300971 /* Security.framework */,
+				3AF1642056734EA0B2B51D75 /* libPods-GTasks.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29C11B5819CAD10E00300971 /* GTasks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29C11B7819CAD10E00300971 /* Build configuration list for PBXNativeTarget "GTasks" */;
+			buildPhases = (
+				CE36CC97F48046F59EC6B128 /* Check Pods Manifest.lock */,
+				29C11B5519CAD10E00300971 /* Sources */,
+				29C11B5619CAD10E00300971 /* Frameworks */,
+				29C11B5719CAD10E00300971 /* Resources */,
+				95B7D4E4386C43A184D4D76B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTasks;
+			productName = GTasks;
+			productReference = 29C11B5919CAD10E00300971 /* GTasks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		29C11B6D19CAD10E00300971 /* GTasksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29C11B7B19CAD10E00300971 /* Build configuration list for PBXNativeTarget "GTasksTests" */;
+			buildPhases = (
+				29C11B6A19CAD10E00300971 /* Sources */,
+				29C11B6B19CAD10E00300971 /* Frameworks */,
+				29C11B6C19CAD10E00300971 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29C11B7019CAD10E00300971 /* PBXTargetDependency */,
+			);
+			name = GTasksTests;
+			productName = GTasksTests;
+			productReference = 29C11B6E19CAD10E00300971 /* GTasksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29C11B5119CAD10E00300971 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Jaikant Kumaran";
+				TargetAttributes = {
+					29C11B5819CAD10E00300971 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					29C11B6D19CAD10E00300971 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 29C11B5819CAD10E00300971;
+					};
+				};
+			};
+			buildConfigurationList = 29C11B5419CAD10E00300971 /* Build configuration list for PBXProject "GTasks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 29C11B5019CAD10E00300971;
+			productRefGroup = 29C11B5A19CAD10E00300971 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29C11B5819CAD10E00300971 /* GTasks */,
+				29C11B6D19CAD10E00300971 /* GTasksTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29C11B5719CAD10E00300971 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D9EAC019EE76E300B4C348 /* 4-green.png in Resources */,
+				29C11B9D19CBACC400300971 /* GTMOAuth2ViewTouch.xib in Resources */,
+				29C11B8F19CB2BBA00300971 /* icon-edit-grey-50.png in Resources */,
+				29D9EABC19EE769700B4C348 /* 1-red.png in Resources */,
+				2965696119E141E30022916E /* task.png in Resources */,
+				29C11B8E19CB2BBA00300971 /* icon-edit-green-50.png in Resources */,
+				29C11B8D19CB2BBA00300971 /* icon-delete-red-50.png in Resources */,
+				29C11B8C19CB2BBA00300971 /* icon-delete-gray-50.png in Resources */,
+				29C11B6619CAD10E00300971 /* Images.xcassets in Resources */,
+				29D9EAC219EE76F800B4C348 /* calendar-red.png in Resources */,
+				29C11B9519CB9B6600300971 /* Default-568h@2x.png in Resources */,
+				29D9EAC419EE770100B4C348 /* calendar.png in Resources */,
+				29D9EABE19EE76C700B4C348 /* 4-grey.png in Resources */,
+				29C11B8B19CB2BBA00300971 /* icon-delete-darkgray-50.png in Resources */,
+				29D9EABA19EE769000B4C348 /* 1-grey.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29C11B6C19CAD10E00300971 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		95B7D4E4386C43A184D4D76B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-GTasks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE36CC97F48046F59EC6B128 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29C11B5519CAD10E00300971 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29C874BD19EC477D0018700F /* TaskListPickerTableViewCell.swift in Sources */,
+				2970FFBB19CCC379003AFDC7 /* EditTaskViewController.swift in Sources */,
+				2970FFBD19CCCC88003AFDC7 /* AddTaskViewController.swift in Sources */,
+				29AD8E9619ED6C100067D098 /* StatusTableViewCell.swift in Sources */,
+				2993FACF19CCE1CB002A6CFD /* TasksTableViewCell.swift in Sources */,
+				29C11B9719CBA02600300971 /* TasksTableViewController.swift in Sources */,
+				29C11B9119CB86AE00300971 /* TasksNavigationController.swift in Sources */,
+				29ED120919EFD6C400B9CBA5 /* TaskAndTasklistStore.swift in Sources */,
+				2965696B19E2ADE40022916E /* TheToolBarControllerViewController.swift in Sources */,
+				29C11B9F19CBAD0C00300971 /* GTLCommon_Sources.m in Sources */,
+				29C11B8419CB018C00300971 /* TaskListsTableViewCell.swift in Sources */,
+				29CEED8319DEEBC400D54E62 /* ThePresentationController.swift in Sources */,
+				29E3737D19DB279D00AAB400 /* LogErrorUtil.swift in Sources */,
+				29C874BF19ECF5CE0018700F /* NotesTextView.swift in Sources */,
+				29CEED8519DF3F3900D54E62 /* TheTransitionControllerObjects.swift in Sources */,
+				2970FFB419CC603E003AFDC7 /* EditTaskListViewController.swift in Sources */,
+				29C11BA419CBAD6B00300971 /* GTLTasks_Sources.m in Sources */,
+				29C11BA119CBAD1A00300971 /* GTLNetworking_Sources.m in Sources */,
+				29C5C49D19EA825300955857 /* DueDateTableViewCell.swift in Sources */,
+				29C11B8219CAF01E00300971 /* TaskListsTableViewController.swift in Sources */,
+				29C11B5F19CAD10E00300971 /* AppDelegate.swift in Sources */,
+				29C11B9319CB8F3A00300971 /* AddTasklistViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29C11B6A19CAD10E00300971 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29C11B7519CAD10E00300971 /* GTasksTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29C11B7019CAD10E00300971 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C11B5819CAD10E00300971 /* GTasks */;
+			targetProxy = 29C11B6F19CAD10E00300971 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		29C11B7619CAD10E00300971 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29C11B7719CAD10E00300971 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29C11B7919CAD10E00300971 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B7CD6CE33E24F86ACFD39A1 /* Pods-GTasks.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = GTasks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GTasks/GTasks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/jai/work/ios-google/googleApi/trunk/Source/**";
+			};
+			name = Debug;
+		};
+		29C11B7A19CAD10E00300971 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B7CD6CE33E24F86ACFD39A1 /* Pods-GTasks.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = GTasks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GTasks/GTasks-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/jai/work/ios-google/googleApi/trunk/Source/**";
+			};
+			name = Release;
+		};
+		29C11B7C19CAD10E00300971 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GTasksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTasks.app/GTasks";
+			};
+			name = Debug;
+		};
+		29C11B7D19CAD10E00300971 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GTasksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTasks.app/GTasks";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		29C11B5419CAD10E00300971 /* Build configuration list for PBXProject "GTasks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29C11B7619CAD10E00300971 /* Debug */,
+				29C11B7719CAD10E00300971 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29C11B7819CAD10E00300971 /* Build configuration list for PBXNativeTarget "GTasks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29C11B7919CAD10E00300971 /* Debug */,
+				29C11B7A19CAD10E00300971 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29C11B7B19CAD10E00300971 /* Build configuration list for PBXNativeTarget "GTasksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29C11B7C19CAD10E00300971 /* Debug */,
+				29C11B7D19CAD10E00300971 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29C11B5119CAD10E00300971 /* Project object */;
+}
