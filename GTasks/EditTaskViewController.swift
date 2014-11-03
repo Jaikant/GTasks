@@ -10,15 +10,15 @@ import UIKit
 
 class EditTaskViewController: UIViewController {
 
-    var task : GTLTasksTask? = nil
+    var task : taskStruct = taskStruct(title: "--", notes: nil, duedate: nil, status: "--", identifier: "--")
     var tasklist : GTLTasksTaskList? = nil
     var taskField:UITextField? = nil
     
-    var tasksService = GTLServiceTasks()
+    //var tasksService = GTLServiceTasks()
     
     //To check if a task is in progress
     var taskTicket:GTLServiceTicket? = nil
-    
+    /* redundant moved to model
     func editTask() {
         
         if self.taskField?.text != nil
@@ -64,7 +64,7 @@ class EditTaskViewController: UIViewController {
             }
         }
     }
-    
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ class EditTaskViewController: UIViewController {
         self.taskField = UITextField(frame: CGRectMake(10, 50, CGRectGetWidth(self.view.bounds) - 20, 100))
         
         taskField?.backgroundColor = UIColor.grayColor()
-        self.taskField?.text = task?.title
+        self.taskField?.text = task.title
         self.view.addSubview(taskField!)
         
         var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("editTask"))
@@ -89,7 +89,7 @@ class EditTaskViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         // Updating the text field to the title of the latest task list object
-        self.taskField?.text = task?.title
+        self.taskField?.text = task.title
     }
     
     override func didReceiveMemoryWarning() {

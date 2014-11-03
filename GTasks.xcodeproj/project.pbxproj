@@ -25,7 +25,6 @@
 		29C11B8D19CB2BBA00300971 /* icon-delete-red-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8819CB2BB900300971 /* icon-delete-red-50.png */; };
 		29C11B8E19CB2BBA00300971 /* icon-edit-green-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8919CB2BB900300971 /* icon-edit-green-50.png */; };
 		29C11B8F19CB2BBA00300971 /* icon-edit-grey-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B8A19CB2BB900300971 /* icon-edit-grey-50.png */; };
-		29C11B9119CB86AE00300971 /* TasksNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9019CB86AE00300971 /* TasksNavigationController.swift */; };
 		29C11B9319CB8F3A00300971 /* AddTasklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */; };
 		29C11B9519CB9B6600300971 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C11B9419CB9B6500300971 /* Default-568h@2x.png */; };
 		29C11B9719CBA02600300971 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9619CBA02500300971 /* TasksTableViewController.swift */; };
@@ -35,6 +34,7 @@
 		29C11B9F19CBAD0C00300971 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11B9E19CBAD0C00300971 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		29C11BA119CBAD1A00300971 /* GTLNetworking_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11BA019CBAD1A00300971 /* GTLNetworking_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		29C11BA419CBAD6B00300971 /* GTLTasks_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C11BA319CBAD6B00300971 /* GTLTasks_Sources.m */; };
+		29C282C41A05D4F2006024A1 /* GoogleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C282C31A05D4F2006024A1 /* GoogleAuth.swift */; };
 		29C5C49D19EA825300955857 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C5C49C19EA825200955857 /* DueDateTableViewCell.swift */; };
 		29C874BD19EC477D0018700F /* TaskListPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C874BC19EC477D0018700F /* TaskListPickerTableViewCell.swift */; };
 		29C874BF19ECF5CE0018700F /* NotesTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C874BE19ECF5CE0018700F /* NotesTextView.swift */; };
@@ -47,6 +47,7 @@
 		29D9EAC219EE76F800B4C348 /* calendar-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EAC119EE76F800B4C348 /* calendar-red.png */; };
 		29D9EAC419EE770100B4C348 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D9EAC319EE770100B4C348 /* calendar.png */; };
 		29E3737D19DB279D00AAB400 /* LogErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */; };
+		29EA967919F91CB90027F117 /* UrgentTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA967819F91CB90027F117 /* UrgentTasksTableViewController.swift */; };
 		29ED120919EFD6C400B9CBA5 /* TaskAndTasklistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED120819EFD6C400B9CBA5 /* TaskAndTasklistStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +84,6 @@
 		29C11B8819CB2BB900300971 /* icon-delete-red-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-delete-red-50.png"; path = "Images.xcassets/icon-delete-red-50.png"; sourceTree = "<group>"; };
 		29C11B8919CB2BB900300971 /* icon-edit-green-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-edit-green-50.png"; path = "Images.xcassets/icon-edit-green-50.png"; sourceTree = "<group>"; };
 		29C11B8A19CB2BB900300971 /* icon-edit-grey-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-edit-grey-50.png"; path = "Images.xcassets/icon-edit-grey-50.png"; sourceTree = "<group>"; };
-		29C11B9019CB86AE00300971 /* TasksNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksNavigationController.swift; sourceTree = "<group>"; };
 		29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTasklistViewController.swift; sourceTree = "<group>"; };
 		29C11B9419CB9B6500300971 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		29C11B9619CBA02500300971 /* TasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +94,7 @@
 		29C11BA019CBAD1A00300971 /* GTLNetworking_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLNetworking_Sources.m; path = ../../googleApi/trunk/Source/GTLNetworking_Sources.m; sourceTree = "<group>"; };
 		29C11BA219CBAD5D00300971 /* GTLTasks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GTLTasks.h; path = ../../googleApi/trunk/Source/Services/Tasks/Generated/GTLTasks.h; sourceTree = "<group>"; };
 		29C11BA319CBAD6B00300971 /* GTLTasks_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLTasks_Sources.m; path = ../../googleApi/trunk/Source/Services/Tasks/Generated/GTLTasks_Sources.m; sourceTree = "<group>"; };
+		29C282C31A05D4F2006024A1 /* GoogleAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAuth.swift; sourceTree = "<group>"; };
 		29C5C49C19EA825200955857 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		29C874BC19EC477D0018700F /* TaskListPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListPickerTableViewCell.swift; sourceTree = "<group>"; };
 		29C874BE19ECF5CE0018700F /* NotesTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTextView.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		29D9EAC119EE76F800B4C348 /* calendar-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-red.png"; path = "../../../apppictures/gtask/calendar-red.png"; sourceTree = "<group>"; };
 		29D9EAC319EE770100B4C348 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = ../../../apppictures/gtask/calendar.png; sourceTree = "<group>"; };
 		29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogErrorUtil.swift; sourceTree = "<group>"; };
+		29EA967819F91CB90027F117 /* UrgentTasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrgentTasksTableViewController.swift; sourceTree = "<group>"; };
 		29ED120819EFD6C400B9CBA5 /* TaskAndTasklistStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAndTasklistStore.swift; sourceTree = "<group>"; };
 		3AF1642056734EA0B2B51D75 /* libPods-GTasks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTasks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7CD6CE33E24F86ACFD39A1 /* Pods-GTasks.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTasks.xcconfig"; path = "Pods/Pods-GTasks.xcconfig"; sourceTree = "<group>"; };
@@ -159,10 +161,10 @@
 		2970FFB719CC77D1003AFDC7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				29C11B9019CB86AE00300971 /* TasksNavigationController.swift */,
 				29C11B8119CAF01E00300971 /* TaskListsTableViewController.swift */,
 				29CEED8219DEEBC400D54E62 /* ThePresentationController.swift */,
 				29C11B9619CBA02500300971 /* TasksTableViewController.swift */,
+				29EA967819F91CB90027F117 /* UrgentTasksTableViewController.swift */,
 				29CEED8419DF3F3900D54E62 /* TheTransitionControllerObjects.swift */,
 				29C11B9219CB8F3A00300971 /* AddTasklistViewController.swift */,
 				2970FFB319CC603E003AFDC7 /* EditTaskListViewController.swift */,
@@ -198,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				29ED120A19EFD79F00B9CBA5 /* Model */,
-				29E3737B19DB277600AAB400 /* Logging */,
+				29E3737B19DB277600AAB400 /* Utilities */,
 				2970FFB719CC77D1003AFDC7 /* Controllers */,
 				2970FFB619CC772A003AFDC7 /* GTL Sources */,
 				29C11B8519CB2B9900300971 /* Images */,
@@ -256,12 +258,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		29E3737B19DB277600AAB400 /* Logging */ = {
+		29E3737B19DB277600AAB400 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				29E3737C19DB279D00AAB400 /* LogErrorUtil.swift */,
+				29C282C31A05D4F2006024A1 /* GoogleAuth.swift */,
 			);
-			name = Logging;
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		29ED120A19EFD79F00B9CBA5 /* Model */ = {
@@ -432,10 +435,11 @@
 				29C874BD19EC477D0018700F /* TaskListPickerTableViewCell.swift in Sources */,
 				2970FFBB19CCC379003AFDC7 /* EditTaskViewController.swift in Sources */,
 				2970FFBD19CCCC88003AFDC7 /* AddTaskViewController.swift in Sources */,
+				29EA967919F91CB90027F117 /* UrgentTasksTableViewController.swift in Sources */,
 				29AD8E9619ED6C100067D098 /* StatusTableViewCell.swift in Sources */,
 				2993FACF19CCE1CB002A6CFD /* TasksTableViewCell.swift in Sources */,
 				29C11B9719CBA02600300971 /* TasksTableViewController.swift in Sources */,
-				29C11B9119CB86AE00300971 /* TasksNavigationController.swift in Sources */,
+				29C282C41A05D4F2006024A1 /* GoogleAuth.swift in Sources */,
 				29ED120919EFD6C400B9CBA5 /* TaskAndTasklistStore.swift in Sources */,
 				2965696B19E2ADE40022916E /* TheToolBarControllerViewController.swift in Sources */,
 				29C11B9F19CBAD0C00300971 /* GTLCommon_Sources.m in Sources */,

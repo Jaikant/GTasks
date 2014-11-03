@@ -15,7 +15,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     var statusCell : StatusTableViewCell?
     var dueDateCell : DueDateTableViewCell?
     
-    var listTitleIdentifier : Array<GTLTasksTaskList?> = [GTLTasksTaskList?]()
+    var taskAndTasklistsSharedObject : TaskAndTasklistStore?
     
     var defaultSwitch: UISwitch?
 
@@ -32,12 +32,15 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
 
     
     //The task list to which the task should be added
-    var tasklist:GTLTasksTaskList? = nil
+    var tasklist: tasklistStruct? = nil
     
-    var tasksService = GTLServiceTasks()
+   // var tasksService = GTLServiceTasks()
     
     //To check if a task is in progress
     var taskTicket:GTLServiceTicket? = nil
+
+    
+    //MARK: - Actions
     
     func resetAndPopController() {
         self.taskTicket = nil
@@ -92,7 +95,30 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         }
     }
     
+    func gobackfornow() -> Void {
+        // The user decided to cancel the Addtask so a normal reset.
+        var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
+       // tblvc.fetchTasks = false
+       // tblvc.fetchTasklist = false
+        resetAndPopController()
+    }
+    
     func createTask() {
+        if tasklist != nil {
+        if self.taskField?.text != nil {
+            let taskInfo = taskStruct(title: self.taskField!.text!, notes: self.noteField?.text, duedate: dueDateCell?.datePicker.date, status: "actionNeeded", identifier: "--")
+            let customTask = tasksStructWithListName(tasklistInfo: tasklist!, taskInfo: taskInfo)
+            taskAndTasklistsSharedObject?.addNewTask(customTask)
+        } else {
+            LogError.log("Task title is nil")
+            }
+        } else {
+            LogError.log("Tasklist is nil")
+        }
+        self.resetAndPopController()
+    }
+    
+    func addTask() {
         
         var task = GTLTasksTask()
         if self.taskField?.text != nil
@@ -129,6 +155,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         }
     }
     
+    //MARK: - TableViewController Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,14 +176,15 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         self.navigationItem.title = "Add Task"
         
         var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
-        //listTitleIdentifier = tblvc.listTitleIdentifier
         
+        taskAndTasklistsSharedObject = TaskAndTasklistStore.singleInstance()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         var section = NSIndexSet(index: 3)
-        self.tableView.reloadSections(section, withRowAnimation: UITableViewRowAnimation.None)
+        //Not sure what this was for, commenting for now as it crashes.
+        //self.tableView.reloadSections(section, withRowAnimation: UITableViewRowAnimation.None)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -170,13 +198,6 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         // Dispose of any resources that can be recreated.
     }
     
-    func gobackfornow() -> Void {
-       // The user decided to cancel the Addtask so a normal reset.
-       var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
-        tblvc.fetchTasks = false
-        tblvc.fetchTasklist = false
-        resetAndPopController()
-    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -251,9 +272,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         case 0:
             cell = tableView.dequeueReusableCellWithIdentifier("taskfield", forIndexPath: indexPath) as? UITableViewCell
             var cellbnds = cell?.contentView.bounds
-            //self.taskField = UITextField(frame: cellbnds!)
             self.taskField?.frame = CGRectMake(cellbnds!.minX + 15, cellbnds!.minY, cellbnds!.width - 15, cellbnds!.height)
-            //taskField?.placeholder = "Enter the task title/description"
             taskField?.delegate = self
             // How to set the number of lines for taskfield?
             //LogError.log("subviews in the cell are: \(cell?.contentView.subviews)")
@@ -401,19 +420,20 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return listTitleIdentifier.count
+        return Int(taskAndTasklistsSharedObject!.tasklistsArray.count)
     }
     
     //UIPickerView Delegate
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        tasklist = listTitleIdentifier[row]
+        if taskAndTasklistsSharedObject!.tasklistsArray.count != 0 {
+        tasklist = taskAndTasklistsSharedObject!.tasklistsArray[row] as tasklistStruct
         LogError.log("Adding task to task list: \(tasklist?.title)")
+        }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return listTitleIdentifier[row]?.title
-        //LogError.log("Row: \(row) and inComponent: \(component)")
+        return taskAndTasklistsSharedObject!.tasklistsArray[row].title
 
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellDelegate {
+class TaskListsTableViewController: UITableViewController {
     
    
     // Controller related properties
@@ -16,12 +16,6 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
     lazy var addTasklistController: AddTasklistViewController? = {
         var _addTasklistController = AddTasklistViewController()
         return _addTasklistController    }()
-    
-    /* Not needed now
-    lazy var tasksController: TasksTableViewController? = {
-        var _tasksController = TasksTableViewController()
-        return _tasksController    }()
-     */
     
     var tasksController: TasksTableViewController?
     
@@ -38,10 +32,6 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
     } ()
     
     
-    /* lazy var errorController : UIAlertController? = {
-        var _errorController = UIAlertController()
-        return _errorController } ()
-    */
     let errorController = UIAlertController()
     
     // If I remove the lazy from this it gives a weird kind of compiler error!
@@ -51,34 +41,6 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
     
     //var alertAction = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: {(action: UIAlertAction!) -> Void in println("Alert given")})
     
-
-    // Model related properties
-
-    let kKeychainItemName : NSString = "Google Tasks Ver 0.14"
-    let kClientID : NSString = "584241963529-vm7kjt16b0cfd9nq6lsjqtjl5tp9svb8.apps.googleusercontent.com"
-    let kClientSecret : NSString = "pLWU-ReJN4j7wQ6cBSisZl0l"
-
-    //Needed for Authentication
-    var tasksService = GTLServiceTasks()
-    
-    
-    //To Store the fetched Task lists
-    var tasklists: GTLTasksTaskLists? = GTLTasksTaskLists()
-    
-    // To store the ticket received for the query.
-    var tasklistsTicket = GTLServiceTicket()
-    
-    // An array of task list objects, so that we can retrieve the count and populate the table.
-    var listTitleIdentifier : Array<GTLTasksTaskList?> = [GTLTasksTaskList?]()
-    
-    //Flag to fetch task lists
-    var fetchTasklist:Bool = true
-
-    
-    var taskRelatedFetchError:NSError? = NSError()
-    
-    
-    
     lazy var dateFormatter: NSDateFormatter? = {
         var _dateformatter = NSDateFormatter()
         _dateformatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -86,7 +48,7 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
     } ()
     
     
-    var taskAndTasklistsData = TaskAndTasklistStore()
+    var taskAndTasklistsSharedObject : TaskAndTasklistStore?
     
     
     var dispatch_q : dispatch_queue_t?
@@ -128,110 +90,6 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
         self.presentViewController(self.errorController, animated: true, completion: {})
     }
     
-    // checks if we have authorization in the key chain. In ViewDidLoad we update this value from the keychain.
-    // In viewDidAppear we check for it.
-    func isTaskAuthorized() -> Bool {
-        return (self.tasksService.authorizer as GTMOAuth2Authentication).canAuthorize
-    }
-    
-    // This function not only checks authorization in key chain, but also checks the level of authorization by checking
-    // if the email address is accessbile. If the email address is accessible.
-    func signedInUserName() -> NSString? {
-        
-        var auth = self.tasksService.authorizer
-        var isSignedIn = auth.canAuthorize
-        
-        if (isSignedIn == true) {
-            return auth.userEmail
-        } else {
-            return nil
-        }
-    }
-    
-    //If for some reason this call fails, there is no fallback. This call should not fail because we always
-    //authorize asking for full access.
-    func isSignedIn() -> Bool {
-        var name = signedInUserName()
-        return (name != nil)
-    }
-
-    
-    
-    // Creates the auth controller for authorizing access to Google Tasks.
-    func createAuthController() -> GTMOAuth2ViewControllerTouch {
-        return GTMOAuth2ViewControllerTouch(scope: kGTLAuthScopeTasks,
-            clientID: kClientID,
-            clientSecret: kClientSecret,
-            keychainItemName: kKeychainItemName,
-            delegate: self,
-            finishedSelector: Selector("viewController:finishedWithAuth:error:"))
-        
-    }
-    
-    // Handle completion of the authorization process, and updates the Task service
-    // with the new credentials.
-    func viewController(viewController: GTMOAuth2ViewControllerTouch , finishedWithAuth authResult: GTMOAuth2Authentication , error:NSError! ) {
-        if error != nil {
-            LogError.log("Authorization error: \(error)")
-            self.tasksService.authorizer = nil
-        } else {
-            self.tasksService.authorizer = authResult
-            self.dismissViewControllerAnimated(false, completion: {})
-        }
-    }
-    
-    
-    func getTasksList() {
-        
-        if isSignedIn() {
-
-            var query = GTLQueryTasks.queryForTasklistsList() as GTLQueryTasks
-            var service = self.tasksService
-            
-            self.tableView.backgroundView?.addSubview(loadingIndicator!)
-            self.loadingIndicator?.startAnimating()
-            tasklistsTicket = service.executeQuery(query, completionHandler: {(ticket, tasklistsReturned, error)-> Void in
-                self.tasklists = tasklistsReturned as? GTLTasksTaskLists
-                self.taskRelatedFetchError = error
-                if error == nil {
-                    self.loadingIndicator?.stopAnimating()
-                    self.updatelistTitleIdentifier()
-                } else {
-                    self.loadingIndicator?.stopAnimating()
-                    LogError.log("\(error)")
-                    // fix it, need a list of errors for below.
-                    let errmsg = error.localizedDescription
-                    var failurereason : String? = error.localizedFailureReason
-                    
-                    self.drawErrorTxt(errorTitle: errmsg, errorMsg: failurereason?)
-                    //self.configureAndPresentDismissErrorController(errorTitle: errmsg, errorMsg: failurereason?) //Internet not working, There was no response from Google, check your internet connection
-                }
-                
-            })
-        } else {
-            LogError.log(" User not signed in")
-        }
-        
-    }
-    
-    func updatelistTitleIdentifier() -> Void {
-        var list : GTLTasksTaskList? = nil
-        var index2:UInt = 0
-        //temp storage of title and list.
-        var _listTitleIdentifier : Array<GTLTasksTaskList?> = [GTLTasksTaskList?]()
-
-        do {
-            list = self.tasklists?.itemAtIndex(index2++ as UInt) as? GTLTasksTaskList
-        if list != nil { /* if condition to prevent the last item to be nil */
-            _listTitleIdentifier.append(list)}
-        }  while list != nil
-        self.listTitleIdentifier = _listTitleIdentifier
-        // Will need update dynamically as it will fetch only once now
-        self.tableView.reloadData()
-        self.fetchTasklist = false
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -249,6 +107,7 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.registerClass(TaskListsTableViewCell.classForCoder(), forCellReuseIdentifier: "tasklists")
+        taskAndTasklistsSharedObject = TaskAndTasklistStore.singleInstance()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -257,12 +116,6 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
         
         dispatch_q = dispatch_queue_create("tasklists_queue", nil)
         
-        
-        // fixit for tasklist addition or deletion
-        /*
-        if fetchTasklist {
-            getTasksList()
-        } */
     }
     /*
     override func prefersStatusBarHidden() -> Bool {
@@ -270,8 +123,7 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
     } */
     
     func RunAddTasklistController() -> Void {
-        addTasklistController?.tasksService = self.tasksService
-        self.fetchTasklist = true
+        //addTasklistController?.tasksService = self.tasksService
         self.navigationController?.pushViewController(addTasklistController!, animated: true)
     }
 
@@ -292,7 +144,7 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         //return listTitleIdentifier.count
-        return Int(taskAndTasklistsData.countOfTasklists)
+        return Int(taskAndTasklistsSharedObject!.tasklistsArray.count)
     }
 
     
@@ -301,13 +153,12 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
 
         // Configure the cell...
         
-        var tasklist = taskAndTasklistsData.fetchedSetOfTasklists.itemAtIndex(UInt(indexPath.row)) as GTLTasksTaskList
+        var tasklist = taskAndTasklistsSharedObject!.tasklistsArray[indexPath.row]
         cell.textLabel?.text = tasklist.title
-        var strdate = dateFormatter?.stringFromDate((tasklist.updated.date)!)
-        cell.detailTextLabel?.text = "Last Update: " + strdate!
+        //To be fixed
+        //var strdate = dateFormatter?.stringFromDate((tasklist.updated.date)!)
+        //cell.detailTextLabel?.text = "Last Update: " + strdate!
         
-        cell.delegate = self
-        cell.animationDuration = 0.2
         cell.selectionStyle = UITableViewCellSelectionStyle.Gray
 
         return cell
@@ -318,39 +169,10 @@ class TaskListsTableViewController: UITableViewController, RMSwipeTableViewCellD
         var currentRow: Int? = indexPath.row
         LogError.log("\(currentRow)")
 
-        var selectedTasklist : GTLTasksTaskList = taskAndTasklistsData.fetchedSetOfTasklists.itemAtIndex(UInt(indexPath.row)) as GTLTasksTaskList
-        taskAndTasklistsData.defaultTasklist = selectedTasklist
-        taskAndTasklistsData.getTasksForSpecifiedTasklist(selectedTasklist)
+        var selectedTasklist : tasklistStruct = taskAndTasklistsSharedObject!.tasklistsArray[indexPath.row]
+        taskAndTasklistsSharedObject!.getTasksForSpecifiedTasklist(selectedTasklist)
         
         dispatch_async(dispatch_get_main_queue(), {self.dismissViewControllerAnimated(true, completion: {println("Viewcontroller dismissed")})})
     }
     
-    func swipeTableViewCellShouldCleanupBackView(swipeTableViewCell: RMSwipeTableViewCell!) -> Bool {
-        return false
-    }
-    
-    func swipeTableViewCellWillResetState(swipeTableViewCell: RMSwipeTableViewCell!, fromPoint point: CGPoint, animation: RMSwipeTableViewCellAnimationType, velocity: CGPoint) {
-        
-        if (point.x > 0 && point.x > CGRectGetHeight(swipeTableViewCell.frame)) {
-            var index:NSIndexPath? = self.tableView.indexPathForCell(swipeTableViewCell)
-            var currentRow: Int? = index?.row
-            self.editTasklistController!.tasklist = self.listTitleIdentifier[currentRow!]?
-            editTasklistController?.tasksService = self.tasksService
-            self.fetchTasklist = true
-            /* not needed now
-            self.navigationController?.pushViewController(editTasklistController!, animated: true) */
-        }
-        
-        if  (point.x < 0 && -point.x > CGRectGetHeight(swipeTableViewCell.frame)){
-            self.tasksController?.tasksService = self.tasksService
-            var index:NSIndexPath? = self.tableView.indexPathForCell(swipeTableViewCell)
-            var currentRow: Int? = index?.row
-            self.tasksController?.tasklist = self.listTitleIdentifier[currentRow!]?
-            self.tasksController?.fetchTasks = true
-            /* not needed now
-            self.navigationController?.pushViewController(tasksController!, animated: true) */
-        }
-    }
-    
-
 }
