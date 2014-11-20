@@ -32,6 +32,7 @@ class DueDateTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        //datePicker.restorationIdentifier = "datePicker"
         
         datePicker.datePickerMode = UIDatePickerMode.DateAndTime
         
@@ -73,17 +74,12 @@ class DueDateTableViewCell: UITableViewCell {
         //self.contentView.bringSubviewToFront(pickerTransformView)
         //if the below does not work, try the same on the sub views.
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
-        /*
-        var viewsDict = NSMutableDictionary()
-        viewsDict.setValue(pickerTransformView, forKey: "pickerTransformView")
         
         
-        var h_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pickerTransformView]-|", options: nil, metrics: nil, views: viewsDict)
-        var v_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pickerTransformView]-|", options: nil, metrics: nil, views: viewsDict)
-        
-        contentView.addConstraints(h_cons)
-        contentView.addConstraints(v_cons) */
-        
+        self.contentView.addSubview(dateLabel)
+        var pickerbnds = pickerTransformView.frame
+        dateLabel.frame = CGRect(origin: CGPoint(x: CGRectGetMinX(pickerbnds) + 10, y: CGRectGetMaxY(pickerbnds)) , size: CGSize(width: pickerbnds.width - 10, height: 20))
+        dateLabel.textAlignment = NSTextAlignment.Center
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -100,6 +96,7 @@ class DueDateTableViewCell: UITableViewCell {
     
     func updateDatePickerLabel() {
         dateLabel.text = dateFormatter.stringFromDate(datePicker.date)
+        dateLabel.textColor = UIColor.redColor()
         LogError.log("Date picked: \(dateLabel.text)")
     }
 

@@ -33,8 +33,8 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     //The task list to which the task should be added
     var tasklist: tasklistStruct? = nil
+    var tasklistsForPicker : Array<tasklistStruct> = []
     
-   // var tasksService = GTLServiceTasks()
     
     //To check if a task is in progress
     var taskTicket:GTLServiceTicket? = nil
@@ -97,7 +97,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     func gobackfornow() -> Void {
         // The user decided to cancel the Addtask so a normal reset.
-        var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
+       // var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
        // tblvc.fetchTasks = false
        // tblvc.fetchTasklist = false
         resetAndPopController()
@@ -106,8 +106,11 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     func createTask() {
         if tasklist != nil {
         if self.taskField?.text != nil {
-            let taskInfo = taskStruct(title: self.taskField!.text!, notes: self.noteField?.text, duedate: dueDateCell?.datePicker.date, status: "actionNeeded", identifier: "--")
+            let taskInfo = taskStruct(title: self.taskField!.text!, notes: self.noteField?.text, duedate: dueDateCell?.datePicker.date, status: "needsAction", identifier: "--")
             let customTask = tasksStructWithListName(tasklistInfo: tasklist!, taskInfo: taskInfo)
+            
+            //V.IMP Flag, based on this flag all the offline processing of tasks work.
+            customTask.sync = false
             taskAndTasklistsSharedObject?.addNewTask(customTask)
         } else {
             LogError.log("Task title is nil")
@@ -160,12 +163,15 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "filler")
-        self.tableView.registerClass(TaskListPickerTableViewCell.classForCoder(), forCellReuseIdentifier: "picker")
+        
         self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "taskfield")
         self.tableView.registerClass(DueDateTableViewCell.classForCoder(), forCellReuseIdentifier: "duedate")
         self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "notes")
         self.tableView.registerClass(StatusTableViewCell.classForCoder(), forCellReuseIdentifier: "status")
+
+        
+        self.tableView.registerClass(TaskListPickerTableViewCell.classForCoder(), forCellReuseIdentifier: "picker")
+
 
         var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("createTask"))
         self.navigationItem.rightBarButtonItem = rightButton
@@ -175,22 +181,37 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         
         self.navigationItem.title = "Add Task"
         
-        var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
+        //var tblvc = self.navigationController?.viewControllers[0] as TasksTableViewController
         
         taskAndTasklistsSharedObject = TaskAndTasklistStore.singleInstance()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         var section = NSIndexSet(index: 3)
+        
+        
+        //To make the picker view display the current tasklist.
+        let indexPath = NSIndexPath(forRow: 0, inSection: 4)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as TaskListPickerTableViewCell
+        let startRow = tasklistRowForPickerInit(taskAndTasklistsSharedObject?.defaultTasklist?.title)
+        cell.pkrvw.selectRow(startRow, inComponent: 0, animated: true)
+        pickerView(cell.pkrvw, didSelectRow: startRow, inComponent: 0)
+        
+
+        
         //Not sure what this was for, commenting for now as it crashes.
         //self.tableView.reloadSections(section, withRowAnimation: UITableViewRowAnimation.None)
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+
         self.navigationController?.toolbarHidden = true
         self.navigationController?.hidesBarsOnSwipe = false
         
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -215,7 +236,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
        
         if (indexPath.section == 1){
             // UIdatepicker
-            return 40 * 3
+            return 155
         }
         if (indexPath.section == 2) {
             // UITextView
@@ -224,7 +245,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         
         if (indexPath.section == 4) {
             // UIPickerView
-            return 40 * 3
+            return 155
         }
 
         return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -239,6 +260,7 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell?
+        
         
         switch indexPath.section {
         case 0:
@@ -337,7 +359,6 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     {
         
          statusCell = tableView.dequeueReusableCellWithIdentifier("status", forIndexPath: indexPath) as? StatusTableViewCell
-         LogError.log("Dequeued status cell")
         
         if taskStatus == false {
             statuscellOff()
@@ -351,14 +372,14 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     
     func statuscellOff() {
-        statusCell?.lbl?.text = "Status"
-        statusCell?.statusImage = UIImage(named: "4.png")
+        statusCell?.lbl.text = "Status"
+        statusCell?.statusImage = UIImage(named: "4-grey.png")!
         statusCell?.stabut?.setImage(statusCell?.statusImage, forState: UIControlState.Normal)
     }
     
     func statuscellOn() {
-    statusCell?.lbl?.text = "Completed"
-    statusCell?.statusImage = UIImage(named: "4-green.png")
+    statusCell?.lbl.text = "Completed"
+    statusCell?.statusImage = UIImage(named: "4-green.png")!
     statusCell?.stabut?.setImage(statusCell?.statusImage, forState: UIControlState.Normal)
     }
     
@@ -384,11 +405,25 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
         cell.pkrvw.delegate = self
         cell.pkrvw.dataSource = self
         
-        cell.pkrvw.selectRow(1, inComponent: 0, animated: true)
-        pickerView(cell.pkrvw, didSelectRow: 1, inComponent: 0)
+        let startRow = tasklistRowForPickerInit(taskAndTasklistsSharedObject?.defaultTasklist?.title)
+        cell.pkrvw.selectRow(startRow, inComponent: 0, animated: true)
+        pickerView(cell.pkrvw, didSelectRow: startRow, inComponent: 0)
 
         return cell
     }
+    
+    func tasklistRowForPickerInit(tasklistTitle : String?) -> Int {
+        LogError.log("looking for tasklist: \(tasklistTitle)")
+        var row : Int = 0
+        for tasklistItem in tasklistsForPicker {
+            if tasklistItem.title == tasklistTitle {
+                return row
+            }
+            row++
+        }
+        return 0
+    }
+
     
     // MARK: Actions
     
@@ -420,21 +455,119 @@ class AddTaskViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Int(taskAndTasklistsSharedObject!.tasklistsArray.count)
+        return Int(tasklistsForPicker.count)
     }
     
     //UIPickerView Delegate
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if taskAndTasklistsSharedObject!.tasklistsArray.count != 0 {
-        tasklist = taskAndTasklistsSharedObject!.tasklistsArray[row] as tasklistStruct
-        LogError.log("Adding task to task list: \(tasklist?.title)")
+        if tasklistsForPicker.count != 0 {
+        tasklist = tasklistsForPicker[row] as tasklistStruct
+        LogError.log("Selected tasklist: \(tasklist!.title)")
         }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return taskAndTasklistsSharedObject!.tasklistsArray[row].title
+        return tasklistsForPicker[row].title
 
     }
+    
+    
+    
+    //MARK: RESTORATION RELATED
+    /*
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        super.encodeRestorableStateWithCoder(coder)
+        
+        var ret = false
+        var saveurl = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as NSURL
+        saveurl = saveurl.URLByAppendingPathComponent("gtasksAddTaskData")
+        
+        ret = NSKeyedArchiver.archiveRootObject(tasklistsForPicker, toFile: saveurl.path!)
+    
+        
+        
+        var idx = self.tableView.indexPathForRowAtPoint(self.tableView.contentOffset)
+        if idx != nil {
+            var modelIdentifier : String = self.modelIdentifierForElementAtIndexPath(idx!, inView: self.tableView!)
+            coder.encodeObject(modelIdentifier, forKey: "tableView.selectedModelIdentifier")
+        }
+    }
+    
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        super.decodeRestorableStateWithCoder(coder)
+        
+        //self.countOfRows = coder.decodeIntegerForKey("countOfRows")
+        
+        var saveurl = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as NSURL
+        saveurl = saveurl.URLByAppendingPathComponent("gtasksAddTaskData")
+        
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(saveurl.path!){
+            self.tasklistsForPicker = NSKeyedUnarchiver.unarchiveObjectWithFile(saveurl.path!) as Array<tasklistStruct>
+            println("unarchived tasksfromModel \(self.tasklistsForPicker)")
+        } else {
+            println("did not unarchive no file present")
+        }
+        
+        
+        //For the view
+        
+        var modelIdentifier = coder.decodeObjectForKey("tableView.selectedModelIdentifier") as? String
+        
+        if modelIdentifier != nil {
+            var indexPath = self.indexPathForElementWithModelIdentifier(modelIdentifier!, inView: self.tableView)
+            
+            if indexPath != nil {
+                self.tableView.selectRowAtIndexPath(indexPath!, animated: true, scrollPosition: UITableViewScrollPosition.None)
+            }
+        }
+        
+    }
+    
+    func modelIdentifierForElementAtIndexPath(idx: NSIndexPath, inView view: UIView) -> String {
+        
+        var identifier = tasklistsForPicker[idx.row].identifier
+    
+        return identifier
+        
+    }
+    
+    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
+        var indx = NSIndexPath(forRow: 0, inSection: 1)
+        
+        var i = 0
+        for obj in tasklistsForPicker {
+            var txt = obj.identifier
+            if txt == identifier {
+                indx = NSIndexPath(forRow: i, inSection: 1)
+                println("Setting indexpath for \(identifier)")
+                self.tableView.reloadData()
+                return indx
+            }
+            i++
+        }
+        
+        println("In indexPathForElementWithModelIdentifier returning default")
+        return indx
+    }
+    
+    
+    class func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
+        
+        var identifier = identifierComponents.last as String
+        println("viewControllerWithRestorationIdentifierPath are \(identifierComponents)")
+        if identifier == "AddTaskController" {
+            println("creating add task view controller")
+            var vc = AddTaskViewController()
+            vc.restorationIdentifier = "AddTaskController"
+            vc.restorationClass = AddTaskViewController.classForCoder()
+            vc.tableView.restorationIdentifier = "AddTableView"
+            println("CREATED THE  add task view controller ****")
+
+            return vc
+        }
+        return nil
+    } */
     
 }

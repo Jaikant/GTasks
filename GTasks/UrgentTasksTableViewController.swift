@@ -78,7 +78,6 @@ class UrgentTasksTableViewController: UITableViewController {
     }
     
     func initializationComplete() {
-        LogError.log("Received notification FILTEREDTASKSREADY, reloading data")
         initializeDataSource()
         dispatch_async(dispatch_get_main_queue(), {self.tableView.reloadData()})
     }
@@ -106,7 +105,7 @@ class UrgentTasksTableViewController: UITableViewController {
         self.tableView.backgroundView?.backgroundColor = UIColor.lightGrayColor()
         
         //register the cell
-        self.tableView.registerClass(TasksTableViewCell.classForCoder(), forCellReuseIdentifier: "tasks")
+        self.tableView.registerClass(TasksTableViewCell.classForCoder(), forCellReuseIdentifier: "cellTask")
         
         
         //Configure the navigation bar
@@ -124,7 +123,7 @@ class UrgentTasksTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.hidesBarsOnSwipe = true
+        //self.navigationController?.hidesBarsOnSwipe = true
         self.tabBarController?.hidesBottomBarWhenPushed = true
         
         //Possibly a bug in ios8, the cell does not resize till scroll
@@ -161,7 +160,7 @@ class UrgentTasksTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> TasksTableViewCell {
         
-        let tasksCell = tableView.dequeueReusableCellWithIdentifier("tasks", forIndexPath: indexPath) as? TasksTableViewCell
+        let tasksCell = tableView.dequeueReusableCellWithIdentifier("cellTask", forIndexPath: indexPath) as? TasksTableViewCell
         
         // Configure the cell...
         

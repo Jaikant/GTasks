@@ -15,3 +15,16 @@ class LogError {
         println(line)
     }
 }
+
+
+ var dateFormatter: NSDateFormatter? = {
+    var _dateformatter = NSDateFormatter()
+    _dateformatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    return _dateformatter
+    } ()
+
+var longDateFormatter: NSDateFormatter? = {
+    var _dateformatter = NSDateFormatter()
+    _dateformatter.dateStyle = NSDateFormatterStyle.LongStyle
+    return _dateformatter
+    } ()

@@ -14,7 +14,6 @@ class EditTaskViewController: UIViewController {
     var tasklist : GTLTasksTaskList? = nil
     var taskField:UITextField? = nil
     
-    //var tasksService = GTLServiceTasks()
     
     //To check if a task is in progress
     var taskTicket:GTLServiceTicket? = nil

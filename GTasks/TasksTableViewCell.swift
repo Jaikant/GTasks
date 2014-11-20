@@ -35,7 +35,7 @@ class TasksTableViewCell: RMSwipeTableViewCell {
     var statusImgGreen = UIImage(named: "4-green.png")
 
 
-
+    var syncStatusImageView = UIImageView(image: UIImage(named: "syncFalse.png"))
 
     lazy var editGreyImageView : UIImageView? = {
         var _editGreyImageView : UIImageView? = UIImageView(frame: CGRectMake(0, 0, CGRectGetHeight(self.contentView.frame), CGRectGetHeight(self.contentView.frame)))
@@ -67,11 +67,11 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: "tasks")
+        super.init(style: style, reuseIdentifier: "cellTask")
         
         self.contentView.addSubview(lbl)
         self.lbl.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        self.lbl.numberOfLines = 3
+        self.lbl.numberOfLines = 2
         self.lbl.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         
@@ -93,16 +93,7 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         firstImgRedBut.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         //populate the view
-        self.contentView.addSubview(firstImgRedBut)
-        self.firstImgRedBut.addSubview(firstImgGreyBut)
-        
-        //setup the constraints
-        var views = NSMutableDictionary()
-        views.setValue(firstImgGreyBut, forKey: "firstImgGreyBut")
-        var h_but_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|[firstImgGreyBut]|", options: nil, metrics: nil, views: views)
-        var v_but_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|[firstImgGreyBut]|", options: nil, metrics: nil, views: views)
-        firstImgRedBut.addConstraints(h_but_cons)
-        firstImgRedBut.addConstraints(v_but_cons)
+        self.contentView.addSubview(firstImgGreyBut)
         
         
         
@@ -114,15 +105,7 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         secondImgRedBut.setTranslatesAutoresizingMaskIntoConstraints(false)
 
         //Populate the view
-        self.contentView.addSubview(secondImgRedBut)
-        self.secondImgRedBut.addSubview(secondImgGreyBut)
-        
-        var views_cal = NSMutableDictionary()
-        views_cal.setValue(secondImgGreyBut, forKey: "secondImgGreyBut")
-        var h_but_cons_cal = NSLayoutConstraint.constraintsWithVisualFormat("H:|[secondImgGreyBut]|", options: nil, metrics: nil, views: views_cal)
-        var v_but_cons_cal = NSLayoutConstraint.constraintsWithVisualFormat("V:|[secondImgGreyBut]|", options: nil, metrics: nil, views: views_cal)
-        secondImgRedBut.addConstraints(h_but_cons_cal)
-        secondImgRedBut.addConstraints(v_but_cons_cal)
+        self.contentView.addSubview(secondImgGreyBut)
         
         
         //add a button
@@ -133,17 +116,13 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         statusImgGreenBut.setTranslatesAutoresizingMaskIntoConstraints(false)
 
         //Populate the view
-        //self.contentView.addSubview(statusImgGreenBut)
-        //self.statusImgGreenBut.addSubview(statusImgGreyBut)
         self.contentView.addSubview(statusImgGreyBut)
+        
+        
+        //Add the sync status imageview to the cell
+        syncStatusImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.contentView.addSubview(syncStatusImageView)
 
-        /*
-        var views_status = NSMutableDictionary()
-        views_status.setValue(statusImgGreyBut, forKey: "statusImgGreyBut")
-        var h_but_cons_status = NSLayoutConstraint.constraintsWithVisualFormat("H:|[statusImgGreyBut]|", options: nil, metrics: nil, views: views_status)
-        var v_but_cons_status = NSLayoutConstraint.constraintsWithVisualFormat("V:|[statusImgGreyBut]|", options: nil, metrics: nil, views: views_status)
-        statusImgGreenBut.addConstraints(h_but_cons_status)
-        statusImgGreenBut.addConstraints(v_but_cons_status) */
         
         
         
@@ -152,23 +131,27 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         viewlist.setValue(lbl, forKey: "label")
         viewlist.setValue(sublbl, forKey: "sublbl")
 
-        viewlist.setValue(firstImgRedBut, forKey: "firstImgRedBut")
-        viewlist.setValue(secondImgRedBut, forKey: "secondImgRedBut")
+        viewlist.setValue(firstImgGreyBut, forKey: "firstImgGreyBut")
+        viewlist.setValue(secondImgGreyBut, forKey: "secondImgGreyBut")
         viewlist.setValue(statusImgGreyBut, forKey: "statusImgGreyBut")
+        viewlist.setValue(syncStatusImageView, forKey: "syncStatusImageView")
 
 
         
-        var h_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-30-[label]-5-|", options: nil, metrics: nil, views: viewlist)
+        var h_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[syncStatusImageView(10)]-[label]-5-|", options: nil, metrics: nil, views: viewlist)
         
         var h_cons_lbl = NSLayoutConstraint.constraintsWithVisualFormat("H:|-30-[sublbl]-5-|", options: nil, metrics: nil, views: viewlist)
 
-        var h_img_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-30-[firstImgRedBut(20)]-80-[secondImgRedBut(20)]-80-[statusImgGreyBut(20)]->=20-|", options: nil, metrics: nil, views: viewlist)
+        var h_img_cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-30-[firstImgGreyBut(20)]-80-[secondImgGreyBut(20)]-80-[statusImgGreyBut(20)]->=20-|", options: nil, metrics: nil, views: viewlist)
         
-        var v_firstImg_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[label]-10-[sublbl]-15-[firstImgRedBut(10)]-5-|", options: nil, metrics: nil, views: viewlist)
+        var v_firstImg_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[label]-10-[sublbl]-15-[firstImgGreyBut(10)]-5-|", options: nil, metrics: nil, views: viewlist)
         
-        var v_secondImg_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[label]-10-[sublbl]-15-[secondImgRedBut(10)]-5-|", options: nil, metrics: nil, views: viewlist)
+        var v_secondImg_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[label]-10-[sublbl]-15-[secondImgGreyBut(10)]-5-|", options: nil, metrics: nil, views: viewlist)
 
         var v_statusImgGrey_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[label]-10-[sublbl]-15-[statusImgGreyBut(10)]-5-|", options: nil, metrics: nil, views: viewlist)
+        
+        var v_syncStatusImageView_cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[syncStatusImageView(10)]->=15-|", options: nil, metrics: nil, views: viewlist)
+
 
         contentView.addConstraints(h_cons)
         contentView.addConstraints(h_cons_lbl)
@@ -176,7 +159,7 @@ class TasksTableViewCell: RMSwipeTableViewCell {
         contentView.addConstraints(v_firstImg_cons)
         contentView.addConstraints(v_secondImg_cons)
         contentView.addConstraints(v_statusImgGrey_cons)
-
+        contentView.addConstraints(v_syncStatusImageView_cons)
 
     }
 

@@ -10,9 +10,9 @@ import UIKit
 
 class StatusTableViewCell: UITableViewCell {
     
-    var lbl : UILabel?
+    var lbl = UILabel()
     var stabut : UIButton?
-    var statusImage : UIImage = UIImage(named: "4.png")
+    var statusImage : UIImage = UIImage(named: "4-grey.png")!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +25,9 @@ class StatusTableViewCell: UITableViewCell {
         
         var cellbnds = self.contentView.bounds
         
-        lbl = UILabel(frame: CGRectMake(cellbnds.minX + 15, cellbnds.minY, cellbnds.width - 70, cellbnds.height))
-        lbl?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        self.contentView.addSubview(lbl!)
+        lbl = UILabel(frame: CGRectMake(cellbnds.minX + 15, cellbnds.minY, cellbnds.width - 50, cellbnds.height))
+        lbl.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        self.contentView.addSubview(lbl)
         
         stabut = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
         stabut?.setImage(statusImage, forState: UIControlState.Normal)

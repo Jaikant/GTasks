@@ -20,7 +20,14 @@ class NotesTextView: UITextView {
         
     }
     
-    
+    override init() {
+        super.init()
+        self.placeholderText = ""
+        self.text = ""
+        self.placeholderColor = UIColor.lightGrayColor()
+        
+        var notifycentre = NSNotificationCenter.defaultCenter()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +46,6 @@ class NotesTextView: UITextView {
     
     
     func textChangedFunction() -> Void {
-        LogError.log("text Changed value of text is \(self.text)")
         if self.placeholderText == "" {
             return
         }
@@ -79,17 +85,14 @@ class NotesTextView: UITextView {
                 placeholderLabel?.tag = 999
                 
                 self.addSubview(placeholderLabel!)
-                LogError.log("Created Label")
             }
             placeholderLabel?.text = placeholderText
             placeholderLabel?.sizeToFit()
             self.sendSubviewToBack(placeholderLabel!)
-            LogError.log("Value os self.text is \(self.text)")
 
             
             
             if self.text == "" {
-                LogError.log("Setting alpha to 1")
                 self.viewWithTag(999)?.alpha = 1
             }
         }

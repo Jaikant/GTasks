@@ -12,7 +12,6 @@ class AddTasklistViewController: UIViewController {
     
     var tasklistField:UITextField? = nil
     
-   // var tasksService = GTLServiceTasks()
     
     //To check if a task is in progress
     var tasklistsTicket:GTLServiceTicket? = nil
@@ -24,7 +23,6 @@ class AddTasklistViewController: UIViewController {
         {
         tasklist.title = self.tasklistField?.text
         var query = GTLQueryTasks.queryForTasklistsInsertWithObject(tasklist) as GTLQueryTasks
-        //var service = self.tasksService
         if tasklistsTicket == nil {
             tasklistsTicket = tasksService.executeQuery(query, completionHandler: {(ticket, tasklistReturned, error)-> Void in
             if error == nil {

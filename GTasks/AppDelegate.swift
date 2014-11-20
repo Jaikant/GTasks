@@ -27,10 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-                
-        let authObj = GoogleAuth()
+        
+        let authObj = GoogleAuth.sharedInstance()
         var sharedinst = TaskAndTasklistStore.singleInstance()
-        sharedinst.initializeTheTasklistsAndTasks()
         
         // Get the size in CGRect for the physical screen on the phone
         let screen = UIScreen.mainScreen()
@@ -101,6 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = mainTabBarController
         self.window?.makeKeyAndVisible()
         
+        
+        
+        
         if authObj.isTaskAuthorized() != true {
             mainTabBarController?.presentViewController(authObj.createAuthController(), animated: true, completion: {})
         }
@@ -140,11 +142,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
         var identifier = identifierComponents.last as? String
-        println("\(identifier)")
        
         
         if identifier == "firstController" {
-            println("creating first view controller")
             firstController = TasksTableViewController()
             var barItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Favorites, tag: 0)
             firstController?.tabBarItem = barItem
@@ -156,7 +156,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if identifier == "nowController" {
-            println("creating nowController")
             nowController = UrgentTasksTableViewController()
             var barItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.MostRecent, tag: 0)
             nowController?.tabBarItem = barItem
@@ -168,7 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         if identifier == "tasksNavigationController" {
-            println("creating tasksNavigationController!")
             tasksNavigationController = UINavigationController()
             //Global Settings
             var navigationbarTextAttr : Dictionary<NSObject, AnyObject> = [NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1), NSForegroundColorAttributeName : UIColor.blackColor()]
@@ -182,7 +180,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if identifier == "nowtasksNavigationController" {
-            println("creating nowtasksNavigationController!")
             nowtasksNavigationController = UINavigationController()
             //Global Settings
             var navigationbarTextAttr : Dictionary<NSObject, AnyObject> = [NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1), NSForegroundColorAttributeName : UIColor.blackColor()]
@@ -197,7 +194,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if identifier == "tabbarcontroller" {
-            println("creating tabbarcontroller!")
             mainTabBarController = UITabBarController()
             mainTabBarController?.restorationIdentifier = "mainTabBarController"
             mainTabBarController?.restorationClass = UITabBarController.classForCoder()

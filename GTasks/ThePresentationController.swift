@@ -14,19 +14,56 @@ class ThePresentationController: UIPresentationController {
     
     override init(presentedViewController: UIViewController!, presentingViewController: UIViewController!) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
-        LogError.log("4")
         
     }
     
+    func configureAttributedTextSystemButton(attributedTextButton: UIButton) {
+        let buttonTitle = NSLocalizedString("Dismiss", comment: "")
+        
+        // Set the button's title for normal state.
+        let normalTitleAttributes = [
+            NSForegroundColorAttributeName: UIColor.applicationBlueColor()
+        ]
+        let normalAttributedTitle = NSAttributedString(string: buttonTitle, attributes: normalTitleAttributes)
+        attributedTextButton.setAttributedTitle(normalAttributedTitle, forState: .Normal)
+        
+        // Set the button's title for highlighted state.
+        let highlightedTitleAttributes = [
+            NSForegroundColorAttributeName: UIColor.greenColor(),
+            NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleThick.rawValue
+        ]
+        let highlightedAttributedTitle = NSAttributedString(string: buttonTitle, attributes: highlightedTitleAttributes)
+        attributedTextButton.setAttributedTitle(highlightedAttributedTitle, forState: .Highlighted)
+        
+        attributedTextButton.addTarget(self, action: "dismissTasklistController", forControlEvents: .TouchUpInside)
+    }
+
+    func dismissTasklistController() {
+        presentedViewController.dismissViewControllerAnimated(true, completion: {})
+    }
+
     
     override func presentationTransitionWillBegin() {
         
+        //var dimViewframe =  CGRect(origin: CGPoint(x: CGRectGetMaxX(containerView.bounds)*0.0, y: CGRectGetMaxY(containerView.bounds)*0.0), size: CGSize(width: containerView.bounds.width * 1.0, height: containerView.bounds.height * 0.9))
+
+        
         dimview = UIView(frame: containerView.bounds)
         self.containerView.addSubview(dimview!)
-        dimview?.backgroundColor = UIColor.darkGrayColor()
+        dimview?.backgroundColor = UIColor.lightGrayColor()
         dimview?.alpha = 0.0
+        
+        var frame =  CGRect(origin: CGPoint(x: CGRectGetMaxX(containerView.bounds)*0.0, y: CGRectGetMaxY(containerView.bounds)*0.9), size: CGSize(width: containerView.bounds.width * 1.0, height: containerView.bounds.height * 0.1))
+        
+        var dismissButton = UIButton(frame: frame)
+        configureAttributedTextSystemButton(dismissButton)
+        dismissButton.backgroundColor = UIColor.whiteColor()
+        dismissButton.alpha = 1.0
+        self.containerView.addSubview(dismissButton)
+        
         let transCoord = self.presentingViewController.transitionCoordinator()
-        transCoord?.animateAlongsideTransitionInView(dimview!, animation: {(context)-> Void in self.dimview!.alpha = 0.6}, completion: {(context)->Void in ()})
+        transCoord?.animateAlongsideTransitionInView(dimview!, animation: {(context)-> Void in self.dimview!.alpha = 0.7
+            dismissButton.alpha = 1.0 }, completion: {(context)->Void in ()})
         
         
     }
@@ -59,7 +96,7 @@ class ThePresentationController: UIPresentationController {
     
     
     override func frameOfPresentedViewInContainerView() -> CGRect {
-        var frame =  CGRect(origin: CGPoint(x: CGRectGetMaxX(containerView.bounds)*0.0, y: CGRectGetMaxY(containerView.bounds)*0.0), size: CGSize(width: containerView.bounds.width * 1.0, height: containerView.bounds.height * 1.0))
+        var frame =  CGRect(origin: CGPoint(x: CGRectGetMaxX(containerView.bounds)*0.03, y: CGRectGetMaxY(containerView.bounds)*0.03), size: CGSize(width: containerView.bounds.width * 0.94, height: containerView.bounds.height * 0.9*0.97))
 
         return frame
     }

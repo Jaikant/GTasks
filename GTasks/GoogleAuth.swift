@@ -12,16 +12,33 @@ var tasksService = GTLServiceTasks()
 
 class GoogleAuth : NSObject {
     
-    let kKeychainItemName : NSString = "Google Tasks Ver 0.32"
+    let kKeychainItemName : NSString = "Google Tasks Ver 0.33"
     let kClientID : NSString = "584241963529-vm7kjt16b0cfd9nq6lsjqtjl5tp9svb8.apps.googleusercontent.com"
     let kClientSecret : NSString = "pLWU-ReJN4j7wQ6cBSisZl0l"
     
-
+    struct authFlag {
+        static var flag : dispatch_once_t = 0
+        static var authInstance : GoogleAuth?
+    }
     
-    override init() {
+    private override init() {
         //First authenticate
         super.init()
         tasksService.authorizer = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeychainItemName, clientID: kClientID, clientSecret: kClientSecret)
+    }
+    
+    class func sharedInstance() -> GoogleAuth {
+        dispatch_once(&(authFlag.flag), { () -> Void in
+            authFlag.authInstance = GoogleAuth()
+        })
+        if authFlag.authInstance != nil {
+            return authFlag.authInstance!
+        } else {
+            sleep(1)
+            LogError.log("ERROR:**** authInstance in NIL! This should never be the case")
+            //To avoid crashing sleep and try again, , crash if need be.
+            return authFlag.authInstance!
+        }
     }
     
     

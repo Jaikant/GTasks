@@ -12,6 +12,7 @@ class TaskListPickerTableViewCell: UITableViewCell {
     
     
     var pkrvw = UIPickerView()
+    var label = UILabel()
 
 
     override func awakeFromNib() {
@@ -24,6 +25,10 @@ class TaskListPickerTableViewCell: UITableViewCell {
         
         var cellbnds = self.contentView.bounds
         var contsize = pkrvw.sizeThatFits(CGSizeZero)
+        
+        label.frame = CGRect(origin: CGPoint(x: CGRectGetMinX(cellbnds)+15, y: CGRectGetMinY(cellbnds)+5), size: CGSize(width: CGRectGetWidth(cellbnds) - 15, height: 15))
+        label.textAlignment = NSTextAlignment.Center
+        
         var pkrvwcontainer = UIView()
 
         pkrvwcontainer.frame = CGRectMake(0, 0, contsize.width, contsize.height)
@@ -32,10 +37,11 @@ class TaskListPickerTableViewCell: UITableViewCell {
         pkrvwcontainer.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         //The frame x axis is such that there is equal spacing for the right and left margins
-        pkrvwcontainer.frame.origin = CGPoint(x: (cellbnds.width - pkrvwcontainer.frame.width)/2, y: 0)
+        pkrvwcontainer.frame.origin = CGPoint(x: (cellbnds.width - pkrvwcontainer.frame.width)/2, y: 15)
        
         
         self.contentView.addSubview(pkrvwcontainer)
+        self.contentView.addSubview(label)
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         
